@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>HDB Queue Guesser</title>
+	<style>
+		.container{
+			width:100%;
+			text-align: center;
+			padding-top:8%;
+			font-family:'Arial';
+			margin:0 auto;
+		}
+		.disclaimer{
+			font-size:10px;
+		}
+		strong{
+			text-decoration: underline;
+		}
+		h2{
+			font-size:40px;
+			margin-bottom:5px;
+		}
+
+		#comment{
+			margin-bottom:40px;
+			font-weight:bold;
+		}
+		a{
+			color:#333;
+		}
+	</style>
+</head>
+<body>
+	
+	<!-- Don't view source la. I newbie only. -->
+	<div class="container">
+		<h1>HDB Queue Number Lucky Guess</h1>
+		<form>
+			<select id="choice">
+				<option value="disabled" disabled selected>Estate</option>
+				<option value="Hougang">Hougang</option> 
+				<option value="Sembawang">Sembawang</option>
+				<option value="Yishun">Yishun</option>
+				<option value="Tampines">Tampines</option>
+			</select>
+
+			<select id="flatsize">
+				<option value="disabled" disabled selected>No. of Rooms?</option>
+				<option value="three-room">3-Room</option> 
+				<option value="four-room">4-Room</option>
+				<option value="five-room">5-Room</option>
+			</select>
+
+			<!-- <input type="text" id="choice"> -->
+			<input type="button" value="Go!" onclick="displayResult();">
+		</form>
+
+		<div id="big-result-area">
+			<h2 id="result-text"></h2>
+			<div id="comment"></div>
+		</div>
+
+		<p>Your queue number for <strong id="estate">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> is <strong id="result-text2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> out of <strong id="applicants">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> applicants for a <strong id="user-flatsize">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> flat in this <strong>Aug 2016 BTO</strong>.</p>
+
+		<p>There are <strong id="num-units">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> units available.</p>
+		
+		<p class="disclaimer">For entertainment only. Results displayed here DOES NOT reflect on your actual queue number. Good luck for your results!<br /><br /><a href="http://www.hdb.gov.sg/cs/infoweb/residential/buying-a-flat/new/application-status" target="_blank">Click here</a> to check your Application Status.</p>
+	</div>
+
+<script>
+
+function displayResult(){
+	
+	var userChoice = document.getElementById('choice');
+	var userFlatSize = document.getElementById('flatsize');
+
+	// Hougang
+
+	if (choice.value === 'Hougang' && flatsize.value === 'three-room'){
+		var applicants = 443;
+		var units = 97;
+
+	} else if (choice.value === 'Hougang' && flatsize.value === 'four-room'){
+		applicants = 1163;
+		units = 250;
+
+	// Sembawang
+
+	} else if (choice.value === 'Sembawang' && flatsize.value === 'four-room'){
+		applicants = 821;
+		units = 304;
+
+	} else if (choice.value === 'Sembawang' && flatsize.value === 'five-room'){
+		applicants = 707;
+		units = 266;
+
+	// Yishun
+
+	} else if (choice.value === 'Yishun' && flatsize.value === 'three-room'){
+		applicants = 330;
+		units = 100;
+
+	} else if (choice.value === 'Yishun' && flatsize.value === 'four-room'){
+		applicants = 389;
+		units = 308;
+
+	// Tampines
+
+	} else if (choice.value === 'Tampines' && flatsize.value === 'three-room'){
+		applicants = 505;
+		units = 356;
+	
+	} else if (choice.value === 'Tampines' && flatsize.value === 'four-room'){
+		applicants = 2661;
+		units = 1501;
+	
+	} else if (choice.value === 'Tampines' && flatsize.value === 'five-room'){
+		applicants = 2177;
+		units = 879;
+
+	} else if (choice.value === "disabled" || flatsize.value === 'disabled'){
+		alert('Please select your Estate and No. of Rooms.');
+		location.reload();
+	
+	} else {
+		alert("Estate & No. of Rooms don't exist!");
+		location.reload();
+	} 
+
+
+
+	var finalResult = Math.floor(Math.random() * (applicants - 0 + 1)) + 0;
+
+	console.log(finalResult / applicants * 100);
+
+	if (finalResult / applicants * 100 < 33){
+		document.getElementById("comment").innerHTML = "That's awesome! Good number leh!"
+		document.getElementById("big-result-area").style.color = "#57AD68";
+
+	} else if (finalResult / applicants * 100 < 66){
+		document.getElementById("comment").innerHTML = "Not bad, mid-range. Good chance still! :)"
+		document.getElementById("big-result-area").style.color = "#FFB902";
+
+	} else {
+		document.getElementById("comment").innerHTML = "Oops. But hey, this is not your actual queue number la. Don't cry k."
+		document.getElementById("big-result-area").style.color = "#FF0000";
+	}
+
+	document.getElementById("result-text").innerHTML = finalResult;
+	document.getElementById("result-text2").innerHTML = finalResult;
+	document.getElementById("estate").innerHTML = choice.value;
+	document.getElementById("applicants").innerHTML = applicants;
+	document.getElementById("user-flatsize").innerHTML = flatsize.value;
+	document.getElementById("num-units").innerHTML = units;
+}
+
+</script>
+</body>
+</html>
