@@ -35,22 +35,29 @@
 
 	</div>
 
-	<script>
+	<script language="JavaScript" type="text/javascript">
 		
 	function displayResult(){
 
-		var gross = document.getElementById("gross").value;
-		var net = document.getElementById("net").value;
+		var gross = parseFloat(document.getElementById("gross").value).toFixed(2);
+		var net = parseFloat(document.getElementById("net").value).toFixed(2);
 		var cpf;
+		var employerCpf;
 
-		if (net == ""){
-			net = gross * 0.8;
-			cpf = gross - net;
-			document.getElementById("result").innerHTML = "Your net salary is $" + net + " after a CPF deduction of $" + cpf + ".";
-		} else if (gross == ""){
-			gross = net / 0.8;
-			cpf = gross - net;
-			document.getElementById("result").innerHTML = "Your gross salary is $" + gross + " before a CPF deduction of $" + cpf + ".";
+		// console.log("net is " + net + " and it is a " + typeof(net));
+		// console.log("gross is " + gross + " and it is a " + typeof(gross));
+
+		if (net == "NaN"){
+			net = (gross * 0.8).toFixed(2);
+			cpf = (gross - net).toFixed(2);
+			var employerCpf = (gross * 0.17).toFixed(2);
+			document.getElementById("result").innerHTML = "Your net salary is $" + net + " after a CPF deduction of $" + cpf + ". Your employer contributes an additional 17%, which is $" + employerCpf;
+		
+		} else if (gross == "NaN"){
+			gross = (net / 0.8).toFixed(2);
+			cpf = (gross - net).toFixed(2);
+			var employerCpf = (gross * 0.17).toFixed(2);
+			document.getElementById("result").innerHTML = "Your gross salary is $" + gross + " before a CPF deduction of $" + cpf + ". Your employer contributes an additional 17%, which is $" + employerCpf;
 		};
 
 		
