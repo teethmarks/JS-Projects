@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Salary Calculator</title>
+	<style>
+		.container{
+			max-width:900px;
+			padding:3%;
+			margin:auto;
+			font-family:"Helvetica",Arial,sans-serif;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+	
+	<h1>Salary Calculator</h1>
+	<form>
+		
+		<label for="gross">Your gross salary</label>
+		<input type="number" id="gross">
+		<br /><br />
+		<label for="net">Your net salary</label>
+		<input type="number" id="net">
+		<br /><br />
+		<input type="button" value="Go!" onclick="displayResult();">
+	</form>
+	<br /><br />
+	
+	<div id="result"></div>
+
+	</div>
+
+	<script>
+		
+	function displayResult(){
+
+		var gross = document.getElementById("gross").value;
+		var net = document.getElementById("net").value;
+		var cpf;
+
+		if (net == ""){
+			net = gross * 0.8;
+			cpf = gross - net;
+			document.getElementById("result").innerHTML = "Your net salary is $" + net + " after a CPF deduction of $" + cpf + ".";
+		} else if (gross == ""){
+			gross = net / 0.8;
+			cpf = gross - net;
+			document.getElementById("result").innerHTML = "Your gross salary is $" + gross + " before a CPF deduction of $" + cpf + ".";
+		};
+
+		
+
+	};
+		
+	</script>
+
+</body>
+</html>
