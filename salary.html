@@ -11,6 +11,7 @@
 			padding:3%;
 			margin:auto;
 			font-family:"Helvetica",Arial,sans-serif;
+			text-align: center;
 		}
 	</style>
 </head>
@@ -19,15 +20,16 @@
 	<div class="container">
 	
 	<h1>Salary Calculator</h1>
-	<form>
+	<form id="salaryForm">
 		
 		<label for="gross">Your gross salary</label>
-		<input type="number" id="gross">
+		<input type="number" id="gross" onClick="clearField(net);">
 		<br /><br />
 		<label for="net">Your net salary</label>
-		<input type="number" id="net">
+		<input type="number" id="net" onClick="clearField(gross);">
 		<br /><br />
-		<input type="button" value="Go!" onclick="displayResult();">
+		<input type="button" value="Submit" onclick="displayResult();">
+		<input type="button" value="Reset" onclick="resetForm();">
 	</form>
 	<br /><br />
 	
@@ -51,19 +53,25 @@
 			net = (gross * 0.8).toFixed(2);
 			cpf = (gross - net).toFixed(2);
 			var employerCpf = (gross * 0.17).toFixed(2);
-			document.getElementById("result").innerHTML = "Your net salary is $" + net + " after a CPF deduction of $" + cpf + ". Your employer contributes an additional 17%, which is $" + employerCpf;
+			document.getElementById("result").innerHTML = "Your net salary is $" + net + " after a CPF deduction of $" + cpf + ".<br /> Your employer contributes an additional 17%, which is $" + employerCpf;
 		
 		} else if (gross == "NaN"){
 			gross = (net / 0.8).toFixed(2);
 			cpf = (gross - net).toFixed(2);
 			var employerCpf = (gross * 0.17).toFixed(2);
-			document.getElementById("result").innerHTML = "Your gross salary is $" + gross + " before a CPF deduction of $" + cpf + ". Your employer contributes an additional 17%, which is $" + employerCpf;
+			document.getElementById("result").innerHTML = "Your gross salary is $" + gross + " before a CPF deduction of $" + cpf + ".<br /> Your employer contributes an additional 17%, which is $" + employerCpf;
 		};
 
-		
-
 	};
-		
+
+	function clearField(input){
+		input.value = "";
+	}
+
+	function resetForm(){
+		document.getElementById("salaryForm").reset();
+	}
+
 	</script>
 
 </body>
