@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Jukebox</title>
+</head>
+<body>
+	
+	<script>
+	
+	// Constructor Function
+	var Song = function(title,artist,lyrics){
+		this.title = title;
+		this.artist = artist;
+		this.lyrics = lyrics;
+		this.playSong = function() {
+			console.log("Now playing: " + this.title + " by " + this.artist);
+			console.log(this.lyrics);
+		};
+	};
+
+	// Current Song List
+	var goodVibrations = new Song("Good Vibrations", "The Beach Boys", "I'm pickin' up good vibrations.");
+	var hereComesTheSun = new Song("Here Comes The Sun", "The Beatles", "Here comes the sun and I say it's all right.");
+	var daydreamBeliever = new Song("Daydream Believer", "The Monkees", "Cheer up, Sleepy Jean. Oh, what can it mean.");
+	var houndDog = new Song("Hound Dog", "Elvis Presley", "You ain't nothin' but a hound dog cryin' all the time.");
+	var dontBeCruel = new Song("Don't Be Cruel", "Elvis Presley", "I don't want no other love, Baby it's just you I'm thinking of.");
+
+	var songs = [goodVibrations,hereComesTheSun,daydreamBeliever,houndDog,dontBeCruel]
+
+	// Greet
+	var userName;
+	function startJukeBox(){
+		userName = prompt("Welcome to the Tune Machine. Looks like you're ready to play some tunes! What's your name?","Bob");
+	};
+
+	// Make Selection
+	function makeSelection(){
+		var userSelect = prompt("Hi " + userName + "! Would you like to (A)dd a new song, (S)earch for an existing song, (P)lay all songs in the queue, or (Q)uit?").toLowerCase();
+
+		if (userSelect === "a") {
+			addSong();
+		} else if (userSelect === "s") {
+			searchForSong();
+		} else if (userSelect === "p") {
+			playSongs();
+		} else if (userSelect === "q") {
+			console.log ("Quitting? BYE!")
+		} else {
+			console.log("You keyed in something WRONG!")
+		};
+	}
+
+	// Add Song
+	playQueue = [];
+	function addSong(){
+		var addTitle = prompt("What is the title of the song you'd like to add?");
+		var addArtist = prompt("Artist Name?");
+		var addLyrics = prompt("Lyrics?");
+		var newSong = new Song(addTitle,addArtist,addLyrics);
+
+		songs.push(newSong);
+		playQueue.push(newSong);
+
+		console.log("Well done. " + addTitle + " has been added.");
+	}
+
+	startJukeBox();
+	makeSelection();
+
+	</script>
+
+</body>
+</html>
