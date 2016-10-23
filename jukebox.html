@@ -52,18 +52,34 @@
 	}
 
 	// Add Song
-	playQueue = [];
+	var playQueue = []; // Don't really understand the need for this.
 	function addSong(){
 		var addTitle = prompt("What is the title of the song you'd like to add?");
 		var addArtist = prompt("Artist Name?");
 		var addLyrics = prompt("Lyrics?");
 		var newSong = new Song(addTitle,addArtist,addLyrics);
 
-		songs.push(newSong);
-		playQueue.push(newSong);
+		songs.push(newSong); // What will be the var name of this new entry?
+		playQueue.push(newSong); // Don't really understand the need for this.
 
 		console.log("Well done. " + addTitle + " has been added.");
-	}
+	};
+
+	// Search For Song
+	function searchForSong(){
+		var userSearch = prompt("Please enter a song or artist.").toLowerCase();
+		var results = []; // Should this be a global var? Or only in this scope?
+
+		for (var i = 0; i < songs.length; i++) {
+
+			if (userSearch === songs[i].title.toLowerCase() || userSearch === songs[i].artist.toLowerCase){
+				results.push(songs[i]);
+				console.log(results);
+			} // When do I need to add square brackets, i.e. [i], and when do I omit?
+		};
+
+		return results; // Still unsure of why or when I should be using 'return'
+	};
 
 	startJukeBox();
 	makeSelection();
