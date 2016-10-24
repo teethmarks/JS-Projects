@@ -47,7 +47,7 @@
 		} else if (userSelect === "q") {
 			console.log ("Quitting? BYE!")
 		} else {
-			console.log("You keyed in something WRONG!")
+			console.log("Invalid Entry. Bye!")
 		};
 	}
 
@@ -69,16 +69,43 @@
 	function searchForSong(){
 		var userSearch = prompt("Please enter a song or artist.").toLowerCase();
 		var results = []; // Should this be a global var? Or only in this scope?
+		var song;
+		var printableResults = "";
 
+		// Loop through the songs array
 		for (var i = 0; i < songs.length; i++) {
 
-			if (userSearch === songs[i].title.toLowerCase() || userSearch === songs[i].artist.toLowerCase){
+			// Find a match, if match found, push to array
+			if (userSearch === songs[i].title.toLowerCase() || userSearch === songs[i].artist.toLowerCase()){
 				results.push(songs[i]);
-				console.log(results);
-			} // When do I need to add square brackets, i.e. [i], and when do I omit?
+				song = songs[i];
+			}
+
 		};
 
-		return results; // Still unsure of why or when I should be using 'return'
+		// If only 1 song found
+		if (results.length === 1) {
+
+			var addSong = prompt("One song was found:\n" + song.title + "\n" + "Would you like to add this song to the queue? (Y)es or (N)o?").toLowerCase();
+
+			if (addSong === "y"){
+				playQueue.push(song);
+				console.log("Great choice, " + userName + "! " + song.title + " has been added.")
+			}
+		}
+
+		// If multiple songs found
+		else if (results.length > 1) {
+			for (var i = 0; i < results.length; i++){
+				printableResults += i + 1 + " " + results[i].title + " by " + results[i].artist + "\n"; // Didn't see this "+=" part coming.
+			};
+			
+			var userSongSelect = prompt(results.length + " songs were found:\n\n" + printableResults + "\n" + "Please enter the number for the song you would like to add.");
+
+			// Continue with userSongSelect again.
+		}
+
+		//return results; // Still unsure of why or when I should be using 'return'
 	};
 
 	startJukeBox();
