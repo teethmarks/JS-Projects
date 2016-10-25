@@ -143,12 +143,13 @@
 	};
 	// End Play Songs
 
-	// Loop Make Selection
+	// Keep Asking Until User Quits
 	function keepAskingUntilQuit(){
 		while (userSelect === "a" || userSelect === "s" || userSelect === "p") {
 			makeSelection();
 		}
 	};
+	// End Keep Asking Until User Quits
 
 	startJukeBox();
 	makeSelection();
