@@ -40,8 +40,9 @@
 	// End Greet
 
 	// Make Selection
+	var userSelect;
 	function makeSelection(){
-		var userSelect = prompt("Hi " + userName + "! Would you like to (A)dd a new song, (S)earch for an existing song, (P)lay all songs in the queue, or (Q)uit?","s").toLowerCase();
+		userSelect = prompt("Hi " + userName + "! Would you like to (A)dd a new song, (S)earch for an existing song, (P)lay all songs in the queue, or (Q)uit?").toLowerCase();
 
 		if (userSelect === "a") {
 			addSong();
@@ -74,7 +75,7 @@
 
 	// Search For Song
 	function searchForSong(){
-		var userSearch = prompt("Please enter a song or artist.","nothing").toLowerCase();
+		var userSearch = prompt("Please enter a song or artist.").toLowerCase();
 		var results = [];
 		var song;
 		var printableResults = "";
@@ -109,7 +110,7 @@
 				printableResults += i + 1 + " " + results[i].title + " by " + results[i].artist + "\n"; // Didn't see this "+=" part coming.
 			};
 			
-			var userSongSelect = prompt(results.length + " songs were found:\n\n" + printableResults + "\n" + "Please enter the number for the song you would like to add.","1");
+			var userSongSelect = prompt(results.length + " songs were found:\n\n" + printableResults + "\n" + "Please enter the number for the song you would like to add.");
 
 			// Push user selection to playQueue
 			userSongSelect = parseInt(userSongSelect-1);
@@ -137,13 +138,21 @@
 	// Play Songs
 	function playSongs(){
 		for (var i = 0; i < playQueue.length; i++){
-			console.log(playQueue[i]);
+			console.log(playQueue[i].playSong());
 		}
 	};
 	// End Play Songs
 
+	// Loop Make Selection
+	function keepAskingUntilQuit(){
+		while (userSelect === "a" || userSelect === "s" || userSelect === "p") {
+			makeSelection();
+		}
+	};
+
 	startJukeBox();
 	makeSelection();
+	keepAskingUntilQuit();
 
 	</script>
 
