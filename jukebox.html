@@ -18,6 +18,7 @@
 			console.log(this.lyrics);
 		};
 	};
+	// End Constructor Function
 
 	// Current Song List
 	var goodVibrations = new Song("Good Vibrations", "The Beach Boys", "I'm pickin' up good vibrations.");
@@ -25,18 +26,22 @@
 	var daydreamBeliever = new Song("Daydream Believer", "The Monkees", "Cheer up, Sleepy Jean. Oh, what can it mean.");
 	var houndDog = new Song("Hound Dog", "Elvis Presley", "You ain't nothin' but a hound dog cryin' all the time.");
 	var dontBeCruel = new Song("Don't Be Cruel", "Elvis Presley", "I don't want no other love, Baby it's just you I'm thinking of.");
+	// End Current Song List
 
+	// Add Current Song List to Array
 	var songs = [goodVibrations,hereComesTheSun,daydreamBeliever,houndDog,dontBeCruel]
+	// End Add Current Song List to Array
 
 	// Greet
 	var userName;
 	function startJukeBox(){
 		userName = prompt("Welcome to the Tune Machine. Looks like you're ready to play some tunes! What's your name?","Bob");
 	};
+	// End Greet
 
 	// Make Selection
 	function makeSelection(){
-		var userSelect = prompt("Hi " + userName + "! Would you like to (A)dd a new song, (S)earch for an existing song, (P)lay all songs in the queue, or (Q)uit?").toLowerCase();
+		var userSelect = prompt("Hi " + userName + "! Would you like to (A)dd a new song, (S)earch for an existing song, (P)lay all songs in the queue, or (Q)uit?","s").toLowerCase();
 
 		if (userSelect === "a") {
 			addSong();
@@ -48,11 +53,12 @@
 			console.log ("Quitting? BYE!")
 		} else {
 			console.log("Invalid Entry. Bye!")
-		};
-	}
+		}
+	};
+	// End Make Selection
 
 	// Add Song
-	var playQueue = []; // Don't really understand the need for this.
+	var playQueue = [];
 	function addSong(){
 		var addTitle = prompt("What is the title of the song you'd like to add?");
 		var addArtist = prompt("Artist Name?");
@@ -64,11 +70,12 @@
 
 		console.log("Well done. " + addTitle + " has been added.");
 	};
+	// End Add Song
 
 	// Search For Song
 	function searchForSong(){
-		var userSearch = prompt("Please enter a song or artist.").toLowerCase();
-		var results = []; // Should this be a global var? Or only in this scope?
+		var userSearch = prompt("Please enter a song or artist.","nothing").toLowerCase();
+		var results = [];
 		var song;
 		var printableResults = "";
 
@@ -83,30 +90,57 @@
 
 		};
 
-		// If only 1 song found
+		// One Song
 		if (results.length === 1) {
 
-			var addSong = prompt("One song was found:\n" + song.title + "\n" + "Would you like to add this song to the queue? (Y)es or (N)o?").toLowerCase();
+			var oneResultaddSong = prompt("One song was found:\n" + song.title + "\n" + "Would you like to add this song to the queue? (Y)es or (N)o?").toLowerCase();
 
-			if (addSong === "y"){
+			if (oneResultaddSong === "y"){
 				playQueue.push(song);
 				console.log("Great choice, " + userName + "! " + song.title + " has been added.")
 			}
-		}
+		} 
+		//End One Song
 
-		// If multiple songs found
+		// Multiple Songs
 		else if (results.length > 1) {
+			
 			for (var i = 0; i < results.length; i++){
 				printableResults += i + 1 + " " + results[i].title + " by " + results[i].artist + "\n"; // Didn't see this "+=" part coming.
 			};
 			
-			var userSongSelect = prompt(results.length + " songs were found:\n\n" + printableResults + "\n" + "Please enter the number for the song you would like to add.");
+			var userSongSelect = prompt(results.length + " songs were found:\n\n" + printableResults + "\n" + "Please enter the number for the song you would like to add.","1");
 
-			// Continue with userSongSelect again.
+			// Push user selection to playQueue
+			userSongSelect = parseInt(userSongSelect-1);
+			playQueue.push(results[userSongSelect]);
+
+			console.log("Great choice, " + userName + "! " + results[userSongSelect].title + " has been added.");
 		}
+		// End Multiple Songs
 
-		//return results; // Still unsure of why or when I should be using 'return'
+		// No Songs
+		else if (results.length === 0){
+			var noResultAddSong = prompt("No songs match your query. Would you like to add a new song? (Y)es or (N)o?").toLowerCase();
+
+			if(noResultAddSong === "y") {
+				addSong();
+			} else if (noResultAddSong === "n") {
+				makeSelection();
+			}
+		}
+		// End No Songs
+
 	};
+	// End searchForSong
+
+	// Play Songs
+	function playSongs(){
+		for (var i = 0; i < playQueue.length; i++){
+			console.log(playQueue[i]);
+		}
+	};
+	// End Play Songs
 
 	startJukeBox();
 	makeSelection();
