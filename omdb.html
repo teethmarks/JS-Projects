@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>OMDB AJAX Test</title>
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+	<style>
+		body{
+			background-color:#333;
+			color:#fff;
+		}
+		.container{
+			max-width:500px;
+			margin:0 auto;
+			text-align:center;
+			font-family:Helvetica, Arial, sans-serif;
+		}
+		.search{
+			margin-top:10px;
+		}
+		.result{
+			margin-top:10px;
+			font-size:13px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<strong>Search for Movie</strong><br />
+		<input type="text" class="search">
+		<button>Submit</button><br /><br />
+		<div class="loading"></div>
+		<div class="result"></div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script>
+
+	// button will fetch user input, and check
+	$('button').on('click', function(e){
+		e.preventDefault();
+		var userInput = $('.search').val();
+
+		if (userInput.length === 0){
+			$('.result').text('Please enter a valid movie title.')
+		} else {
+			displayResults();
+
+			// if (something === undefined){
+			// 	$('.result').html('No such movie!');
+			// }
+		}
+
+		function displayResults(){
+			var titleSearch = 'https://www.omdbapi.com/?t=' + userInput;
+			$.ajax({
+			type: 'GET',
+			url: titleSearch,
+			success: function (response) {
+				$('.result').html(
+					"<img src='" + response.Poster + "'/>" + "<br /><br />" + 
+					"<strong>Title:</strong> " + response.Title + "<br />" + 
+					"<strong>Rated:</strong> " + response.Rated + "<br />" + 
+					"<strong>Actors:</strong> " + response.Actors + "<br />" + 
+					"<strong>Released:</strong> " + response.Released + "<br />" + 
+					"<strong>Plot:</strong> " + response.Plot + "<br />"
+				);
+			},
+			error: function () {
+				console.log('Problem retrieving your database');
+			},
+			beforeSend: function() {
+				$('.loading').text('Fetching your results..');
+			},
+			complete: function() {
+				$('.loading').remove();
+			}
+			});
+		};
+	});
+
+		
+	
+	</script>
+</body>
+</html>
