@@ -66,8 +66,8 @@
 		var addLyrics = prompt("Lyrics?");
 		var newSong = new Song(addTitle,addArtist,addLyrics);
 
-		songs.push(newSong); // What will be the var name of this new entry?
-		playQueue.push(newSong); // Don't really understand the need for this.
+		songs.push(newSong);
+		playQueue.push(newSong);
 
 		console.log("Well done. " + addTitle + " has been added.");
 	};
@@ -111,7 +111,6 @@
 			};
 			
 			var userSongSelect = prompt(results.length + " songs were found:\n\n" + printableResults + "\n" + "Please enter the number for the song you would like to add.");
-
 			// Push user selection to playQueue
 			userSongSelect = parseInt(userSongSelect-1);
 			playQueue.push(results[userSongSelect]);
