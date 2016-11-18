@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HKG to SGD Converter</title>
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+	<style>
+		body{margin:0;padding:0;background-color:#333;}
+    *{box-sizing: border-box;}
+		.container{color:#fff;font-family:Arial;padding:25vh 3%;text-align: center;max-width:500px;margin:0 auto;}
+		.sgd{margin-top:15px;}
+    .hkd{width:100%;padding:5% 2%;margin-top:5px;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		HK$ <input type="number" class="hkd" placeholder="Based on 5.5 rate">
+		<div class="sgd"></div>
+	</div>
+	<script
+  src="https://code.jquery.com/jquery-1.12.4.js"
+  integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+  crossorigin="anonymous"></script>
+  	<script>
+  		
+  		
+  		$('.hkd').on('keyup',function(){
+  			var convert = $('.hkd').val();
+  			convert = convert / 5.5;
+  			convert = convert.toFixed(2);
+  			$('.sgd').html('S$ ' + convert);
+  		
+  		});
+  	</script>
+</body>
+</html>
