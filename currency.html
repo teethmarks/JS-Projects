@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Foreign to SGD Converter</title>
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+	<style>
+	body{margin:0;padding:0;background-color:#333;}
+	*{box-sizing: border-box;}
+	.container{color:#fff;font-family:Arial;padding:25vh 3%;text-align: center;max-width:500px;margin:0 auto;}
+	.sgd{margin-top:15px;}
+	.foreign{width:100%;padding:5% 2%;margin-top:5px;}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<select class="country">
+			<option value="AUD">AUD</option>
+			<option value="BGN">BGN</option>
+			<option value="BRL">BRL</option>
+			<option value="CAD">CAD</option>
+			<option value="CHF">CHF</option>
+			<option value="CNY">CNY</option>
+			<option value="CZK">CZK</option>
+			<option value="DKK">DKK</option>
+			<option value="GBP">GBP</option>
+			<option value="HKD">HKD</option>
+			<option value="HRK">HRK</option>
+			<option value="HUF">HUF</option>
+			<option value="IDR">IDR</option>
+			<option value="ILS">ILS</option>
+			<option value="INR">INR</option>
+			<option value="JPY">JPY</option>
+			<option value="KRW">KRW</option>
+			<option value="MXN">MXN</option>
+			<option value="MYR">MYR</option>
+			<option value="NOK">NOK</option>
+			<option value="NZD">NZD</option>
+			<option value="PHP">PHP</option>
+			<option value="PLN">PLN</option>
+			<option value="RON">RON</option>
+			<option value="RUB">RUB</option>
+			<option value="SEK">SEK</option>
+			<option value="THB">THB</option>
+			<option value="TRY">TRY</option>
+			<option value="USD">USD</option>
+			<option value="ZAR">ZAR</option>
+			<option value="EUR">EUR</option>
+		</select>
+		<input type="number" class="foreign">
+		<div class="sgd"></div>
+	</div>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  	<script>
+  		
+  		$('.foreign').on('keyup',function(){
+  			var convert = $('.country').val();
+  			
+  			$.ajax({
+  				type: 'GET',
+  				url: 'http://api.fixer.io/latest?base=SGD',
+  				success: function (response) {
+  					$('.sgd').html(response.rates.HKD);
+  				},
+  				error: function(){
+  					$('.sgd').html('error')
+  				},
+  				beforeSend: function(){
+  					$('.sgd').html('loading...')
+  				}
+  			});
+
+  			// convert = convert / response.rates.HKD;
+  			// convert = convert.toFixed(2);
+  			// $('.sgd').html('S$ ' + convert);
+  		});
+
+  	</script>
+</body>
+</html>
