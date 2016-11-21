@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>HKG Weather</title>
+	<meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+	<style>
+		.container{
+			max-width: 600px;
+			margin:0 auto;
+			font-family:Arial,sans-serif;
+		}
+		.result{
+			margin-bottom:10px;
+		}
+		h1{
+			margin-bottom:10px;
+			font-size:25px;
+		}
+		select{
+			margin-bottom:10px;
+			width:50%;
+			padding:1%;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+
+		<h1><span></span> 6-Day Forecast</h1> 
+
+		<select>
+			<option value="hongkong">Hong Kong</option>
+			<option value="macau">Macau</option>
+			<option value="singapore">Singapore</option>
+		</select>
+
+		<div class="now">
+			<strong>Now:</strong>
+			<div class="result"></div>
+		</div>
+
+		<hr />
+
+		<div class="day2">
+			<strong>Day 2:</strong>
+			<div class="result"></div>
+		</div>
+
+		<hr />
+
+		<div class="day3">
+			<strong>Day 3:</strong>
+			<div class="result"></div>
+		</div>
+
+		<hr />
+
+		<div class="day4">
+			<strong>Day 4:</strong>
+			<div class="result"></div>
+		</div>
+
+		<hr />
+
+		<div class="day5">
+			<strong>Day 5:</strong>
+			<div class="result"></div>
+		</div>
+
+		<hr />
+
+		<div class="day6">
+			<strong>Day 6:</strong>
+			<div class="result"></div>
+		</div>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+	<script src="https://cdn.jsdelivr.net/momentjs/2.16.0/moment.min.js"></script>
+
+	<script>
+
+		$.ajax({
+			type: 'GET',
+			url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q=hongkong&cnt=6&APPID=f1b51d2f1b5470ff8b150981fff67a1d',
+			success: function(response){
+
+				$('h1').find('span').html(response.city.name);
+
+				$('.now').find('strong').html(moment.unix(response.list[0].dt).format("ddd, D MMM YYYY"));
+				$('.now').find('.result').html(Math.round(response.list[0].temp.max - 273.15) + ' °C<br />' + response.list[0].weather[0].description);
+
+				$('.day2').find('strong').html(moment.unix(response.list[1].dt).format("ddd, D MMM YYYY"));
+				$('.day2').find('.result').html(Math.round(response.list[1].temp.max - 273.15) + ' °C<br />' + response.list[1].weather[0].description);
+
+				$('.day3').find('strong').html(moment.unix(response.list[2].dt).format("ddd, D MMM YYYY"));
+				$('.day3').find('.result').html(Math.round(response.list[2].temp.max - 273.15) + ' °C<br />' + response.list[2].weather[0].description);
+
+				$('.day4').find('strong').html(moment.unix(response.list[3].dt).format("ddd, D MMM YYYY"));
+				$('.day4').find('.result').html(Math.round(response.list[3].temp.max - 273.15) + ' °C<br />' + response.list[3].weather[0].description);
+
+				$('.day5').find('strong').html(moment.unix(response.list[4].dt).format("ddd, D MMM YYYY"));
+				$('.day5').find('.result').html(Math.round(response.list[4].temp.max - 273.15) + ' °C<br />' + response.list[4].weather[0].description);
+
+				$('.day6').find('strong').html(moment.unix(response.list[5].dt).format("ddd, D MMM YYYY"));
+				$('.day6').find('.result').html(Math.round(response.list[5].temp.max - 273.15) + ' °C<br />' + response.list[5].weather[0].description);
+			},
+			error: function(){
+				$('.result').html('error.');
+			},
+			beforeSend: function(){
+				$('.result').html('loading..');
+			}
+		});
+
+		$('select').on('change', function(e){
+			e.preventDefault();
+			var value = $(this).val();
+			var selectURL = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + value + '&cnt=6&APPID=f1b51d2f1b5470ff8b150981fff67a1d'
+
+			$.ajax({
+				type: 'GET',
+				url: selectURL,
+				success: function(response){
+
+					$('h1').find('span').html(response.city.name);
+
+					$('.now').find('strong').html(moment.unix(response.list[0].dt).format("ddd, D MMM YYYY"));
+					$('.now').find('.result').html(Math.round(response.list[0].temp.max - 273.15) + ' °C<br />' + response.list[0].weather[0].description);
+
+					$('.day2').find('strong').html(moment.unix(response.list[1].dt).format("ddd, D MMM YYYY"));
+					$('.day2').find('.result').html(Math.round(response.list[1].temp.max - 273.15) + ' °C<br />' + response.list[1].weather[0].description);
+
+					$('.day3').find('strong').html(moment.unix(response.list[2].dt).format("ddd, D MMM YYYY"));
+					$('.day3').find('.result').html(Math.round(response.list[2].temp.max - 273.15) + ' °C<br />' + response.list[2].weather[0].description);
+
+					$('.day4').find('strong').html(moment.unix(response.list[3].dt).format("ddd, D MMM YYYY"));
+					$('.day4').find('.result').html(Math.round(response.list[3].temp.max - 273.15) + ' °C<br />' + response.list[3].weather[0].description);
+
+					$('.day5').find('strong').html(moment.unix(response.list[4].dt).format("ddd, D MMM YYYY"));
+					$('.day5').find('.result').html(Math.round(response.list[4].temp.max - 273.15) + ' °C<br />' + response.list[4].weather[0].description);
+
+					$('.day6').find('strong').html(moment.unix(response.list[5].dt).format("ddd, D MMM YYYY"));
+					$('.day6').find('.result').html(Math.round(response.list[5].temp.max - 273.15) + ' °C<br />' + response.list[5].weather[0].description);
+				},
+				error: function(){
+					$('.result').html('error.');
+				},
+				beforeSend: function(){
+					$('.result').html('loading..');
+				}
+			});
+		});
+
+	
+	</script>
+	
+</body>
+</html>
