@@ -49,30 +49,35 @@
 		</select>
 		<input type="number" class="foreign">
 		<div class="sgd"></div>
+		<div class="loading"></div>
 	</div>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script>
   		
   		$('.foreign').on('keyup',function(){
-  			var convert = $('.country').val();
+  			var countrySelect = $('.country').val();
+  			var foreign = $('.foreign').val();
+  			var rate;
   			
   			$.ajax({
   				type: 'GET',
   				url: 'http://api.fixer.io/latest?base=SGD',
   				success: function (response) {
-  					$('.sgd').html(response.rates.HKD);
+  					$('.sgd').html('S$' + (response.rates[countrySelect] * foreign).toFixed(2));
   				},
   				error: function(){
   					$('.sgd').html('error')
   				},
   				beforeSend: function(){
-  					$('.sgd').html('loading...')
+  					$('.loading').html('loading...')
+  				},
+  				complete: function(){
+  					$('.loading').remove();
   				}
   			});
 
-  			// convert = convert / response.rates.HKD;
-  			// convert = convert.toFixed(2);
-  			// $('.sgd').html('S$ ' + convert);
+  			var output = foreign * rate;
+
   		});
 
   	</script>
