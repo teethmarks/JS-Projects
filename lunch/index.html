@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>What's for lunch?</title>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: url(bg.jpg) no-repeat center center fixed; 
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+
+    }
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    .container {
+        color: #fff;
+        background-color:rgba(0,0,0,0.8);
+        background-repeat: no-repeat;
+        padding:3vh;
+        text-align: center;
+        width:90%;
+        max-width: 500px;
+        margin: 28vh auto;
+        font-family: 'Oswald', sans-serif;
+ 		border-radius: 5px;
+ 		/*line-height: 110%;*/
+    }
+
+    .result{
+    	margin-bottom:2vh;
+    	font-size:2em;
+    	white-space: nowrap;
+    }
+
+    .result span{
+    	color:#999;
+    }
+
+    .spin{
+    	padding:3%;
+    	width:40%;
+    	display:block;
+    	border-radius:3px;
+    	cursor:pointer;
+    	margin:0 auto;
+    	background-color:#78D270;
+    	margin-bottom:2vh;
+
+    	-webkit-user-select: none; /* Chrome/Safari */        
+    	-moz-user-select: none; /* Firefox */
+    	-ms-user-select: none; /* IE10+ */
+    }
+
+    .spin:hover{
+    	background-color: #82DC7A;
+    }
+
+    .alert{
+    	margin-top:20px;
+    	line-height: 110%;
+    }
+
+    /*@media screen and (max-width: 600px){
+    	.container{
+    		padding-top:8%;
+    	}
+    }*/
+    
+    </style>
+</head>
+
+<body>
+    
+    <div class="container">
+        <div class="result"><span>"What's for lunch?"</span></div>
+        <a class="spin">ROLL!</a>
+        <span class="alert"></div>
+    </div>
+   
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script>
+
+    var count = 0;
+	    
+    $('.spin').bind('click', function(e){
+    	e.preventDefault();
+    	var arr = new Array(
+	    	'Yong Tau Foo', 
+	    	'CB Rice', 
+	    	'Mee Sua', 
+	    	'Bak Chor Mee',
+	    	'Briyani', 
+	    	'Chicken Rice',
+	    	'Mcdonalds',
+	    	'KFC',
+	    	'Laksa', 
+	    	'Prawn Noodles',
+	    	'Ayam Penyet', 
+	    	'Mee Soto', 
+	    	'Chick & Ken', 
+	    	'CCR',
+	    	'Order Pizza',
+	    	'QQ Rice',
+	    	'Daily Cut',
+	    	'Cedele',
+	    	'Mini Wok Noodles'
+	    	);
+
+    	$('.result').html(arr[Math.floor(Math.random() * ((arr.length - 1) - 0 + 1))]);
+
+    	count++;
+    	console.log(count);
+    	
+    	if (count >= 10) {
+    		$('.alert').html('Make up your mind leh.' + '<br />You rolled <u>' + count + '</u> times already.')
+    	}
+		 
+	});
+	      
+    </script>
+    	
+
+</body>
+
+</html>
