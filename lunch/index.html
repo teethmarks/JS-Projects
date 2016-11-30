@@ -85,6 +85,30 @@
         <div class="result"><span>"What's for lunch?"</span></div>
         <a class="spin">ROLL!</a>
         <span class="alert"></div>
+        <input type="hidden" name ="Yong Tau Foo" value = "0">
+        <input type="hidden" name ="CB Rice" value = "0">
+        <input type="hidden" name ="Mee Sua" value = "0">
+        <input type="hidden" name ="Bak Chor Mee" value = "0">
+        <input type="hidden" name ="Briyani" value = "0">
+        <input type="hidden" name ="Chicken Rice" value = "0">
+        <input type="hidden" name ="Mcdonalds" value = "0">
+        <input type="hidden" name ="KFC" value = "0">
+        <input type="hidden" name ="Laksa" value = "0">
+        <input type="hidden" name ="Prawn Noodles" value = "0">
+        <input type="hidden" name ="Ayam Penyet" value = "0">
+        <input type="hidden" name ="Mee Soto" value = "0">
+        <input type="hidden" name ="Chick & Ken" value = "0">
+        <input type="hidden" name ="CCR" value = "0">
+        <input type="hidden" name ="Order Pizza" value = "0">
+        <input type="hidden" name ="QQ Rice" value = "0">
+        <input type="hidden" name ="Daily Cut" value = "0">
+        <input type="hidden" name ="Cedele" value = "0">
+        <input type="hidden" name ="Mini Wok Noodle" value = "0">
+        <input type="hidden" name ="Salad" value = "0">
+        <input type="hidden" name ="Bak Kut Teh" value = "0">
+        <input type="hidden" name ="Mee/Maggi Goreng" value = "0">
+        <input type="hidden" name ="Tip Top" value = "0">
+        <input type="hidden" name ="Turkish" value = "0">
     </div>
    
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -97,32 +121,46 @@
     	var arr = new Array(
 	    	'Yong Tau Foo', 
 	    	'CB Rice', 
-	    	'Mee Sua', 
-	    	'Bak Chor Mee',
-	    	'Briyani', 
-	    	'Chicken Rice',
-	    	'Mcdonalds',
-	    	'KFC',
-	    	'Laksa', 
-	    	'Prawn Noodles',
-	    	'Ayam Penyet', 
-	    	'Mee Soto', 
-	    	'Chick & Ken', 
-	    	'CCR',
-	    	'Order Pizza',
-	    	'QQ Rice',
-	    	'Daily Cut',
-	    	'Cedele',
-	    	'Mini Wok Noodles',
-	    	'Salad',
-	    	'Bak Kut Teh',
-	    	'Mee/Maggi Goreng'
+            'Mee Sua', 
+            'Bak Chor Mee',
+            'Briyani', 
+            'Chicken Rice',
+            'Mcdonalds',
+            'KFC',
+            'Laksa', 
+            'Prawn Noodles',
+            'Ayam Penyet', 
+            'Mee Soto', 
+            'Chick & Ken', 
+            'CCR',
+            'Order Pizza',
+            'QQ Rice',
+            'Daily Cut',
+            'Cedele',
+            'Mini Wok Noodles',
+            'Salad',
+            'Bak Kut Teh',
+            'Mee/Maggi Goreng',
+            'Tip Top',
+            'Turkish'
 	    	);
 
-    	$('.result').html(arr[Math.floor(Math.random() * ((arr.length - 1) - 0 + 1))]);
+        // randomly choose from array
+        var random_response = arr[Math.floor(Math.random() * ((arr.length - 1) - 0 + 1))];
+        $('.result').html(random_response);
+
+        // replace spaces with underscore
+        random_response  = random_response.replace(/ /g,"_");
+        
+        var current_response_hidden_value = $("#"+random_response+"").val();
+        console.log(current_response_hidden_value);
+        
+        // current_response_hidden_value = parseInt(current_response_hidden_value);
+
+        // current_response_hidden_value = current_response_hidden_value + 1;
+        // $('#'+random_response+'').val(current_response_hidden_value);
 
     	count++;
-    	console.log(count);
     	
     	if (count >= 10) {
     		$('.alert').html('Make up your mind leh.' + '<br />You rolled <u>' + count + '</u> times already.')
