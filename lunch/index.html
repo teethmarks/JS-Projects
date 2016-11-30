@@ -82,12 +82,6 @@
     	margin-top:20px;
     	line-height: 110%;
     }
-
-    /*@media screen and (max-width: 600px){
-    	.container{
-    		padding-top:8%;
-    	}
-    }*/
     
     </style>
 </head>
@@ -128,7 +122,7 @@
     <script>
 
     var count = 0;
-	    
+
     $('.spin').bind('click', function(e){
     	e.preventDefault();
     	var arr = new Array(
@@ -172,12 +166,12 @@
         // find out how many occurences has happened
         randomResponse  = randomResponse.replace(/ /g,"_");
         
-        var currentHidden = $("#"+randomResponse+"").val();
+        var currentHidden = $("#" + randomResponse + "").val();
         
         currentHidden = parseInt(currentHidden);
         currentHidden = currentHidden + 1;
 
-        $('#'+randomResponse+'').val(currentHidden);
+        $('#' + randomResponse + '').val(currentHidden);
         console.log(randomResponse + currentHidden)
 
         // display message if occurence is more than 3
@@ -185,7 +179,7 @@
             randomResponse  = randomResponse.replace(/_/g," ");
             $('.alert').html("Eh. " + randomResponse + " has appeared 3 times already.<br />You will eat " + randomResponse + " today. Bye!");
             $('.spin').attr('disabled','disabled');
-            $('.spin').text('NO MORE ROLLING.');
+            // $('.spin').text('NO MORE ROLLING.');
             $('.spin').addClass('disabled');
         }
 		 
