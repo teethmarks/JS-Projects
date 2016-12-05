@@ -20,6 +20,7 @@
     
     * {
         box-sizing: border-box;
+        outline: none;
     }
     
     .container {
@@ -55,6 +56,10 @@
     	margin:0 auto;
     	background-color:#78D270;
     	margin-bottom:2vh;
+        border:0;
+        color:#fff;
+        font-size:16px;
+        font-family: 'Oswald', sans-serif;
 
     	-webkit-user-select: none; /* Chrome/Safari */        
     	-moz-user-select: none; /* Firefox */
@@ -65,16 +70,18 @@
     	background-color: #82DC7A;
     }
 
+    .disabled{
+        background-color:#999;    
+    }
+
+    .disabled:hover{
+        background-color:#999;
+    }ee
+
     .alert{
     	margin-top:20px;
     	line-height: 110%;
     }
-
-    /*@media screen and (max-width: 600px){
-    	.container{
-    		padding-top:8%;
-    	}
-    }*/
     
     </style>
 </head>
@@ -83,47 +90,98 @@
     
     <div class="container">
         <div class="result"><span>"What's for lunch?"</span></div>
-        <a class="spin">ROLL!</a>
+        <button class="spin">ROLL!</button>
         <span class="alert"></div>
-    </div>
+        <input type="hidden" id="Yong_Tau_Foo" name="Yong_Tau_Foo" value="0">
+        <input type="hidden" id="CB_Rice" name="CB_Rice" value="0">
+        <input type="hidden" id="Mee_Sua" name="Mee_Sua" value="0">
+        <input type="hidden" id="Bak_Chor_Mee" name="Bak_Chor_Mee" value="0">
+        <input type="hidden" id="Briyani" name="Briyani" value="0">
+        <input type="hidden" id="Chicken_Rice" name="Chicken_Rice" value="0">
+        <input type="hidden" id="Mcdonalds" name="Mcdonalds" value="0">
+        <input type="hidden" id="KFC" name="KFC" value="0">
+        <input type="hidden" id="Laksa" name="Laksa" value="0">
+        <input type="hidden" id="Prawn_Noodles" name="Prawn_Noodles" value="0">
+        <input type="hidden" id="Ayam_Penyet" name="Ayam_Penyet" value="0">
+        <input type="hidden" id="Mee_Soto" name="Mee_Soto" value="0">
+        <input type="hidden" id="Chick_n_Ken" name="Chick_n_Ken" value="0">
+        <input type="hidden" id="CCR" name="CCR" value="0">
+        <input type="hidden" id="Order_Pizza" name="Order_Pizza" value="0">
+        <input type="hidden" id="QQ_Rice" name="QQ_Rice" value="0">
+        <input type="hidden" id="Daily_Cut" name="Daily_Cut" value="0">
+        <input type="hidden" id="Cedele" name="Cedele" value="0">
+        <input type="hidden" id="Mini_Wok_Noodles" name="Mini_Wok_Noodles" value="0">
+        <input type="hidden" id="Salad" name="Salad" value="0">
+        <input type="hidden" id="Bak_Kut_Teh" name="Bak_Kut_Teh" value="0">
+        <input type="hidden" id="Maggi_Goreng" name="Maggi_Goreng" value="0">
+        <input type="hidden" id="Tip_Top" name="Tip_Top" value="0">
+        <input type="hidden" id="Turkish" name="Turkish" value="0">
+   <div>
    
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script>
 
     var count = 0;
-	    
+
     $('.spin').bind('click', function(e){
     	e.preventDefault();
     	var arr = new Array(
 	    	'Yong Tau Foo', 
 	    	'CB Rice', 
-	    	'Mee Sua', 
-	    	'Bak Chor Mee',
-	    	'Briyani', 
-	    	'Chicken Rice',
-	    	'Mcdonalds',
-	    	'KFC',
-	    	'Laksa', 
-	    	'Prawn Noodles',
-	    	'Ayam Penyet', 
-	    	'Mee Soto', 
-	    	'Chick & Ken', 
-	    	'CCR',
-	    	'Order Pizza',
-	    	'QQ Rice',
-	    	'Daily Cut',
-	    	'Cedele',
-	    	'Mini Wok Noodles'
+            'Mee Sua', 
+            'Bak Chor Mee',
+            'Briyani', 
+            'Chicken Rice',
+            'Mcdonalds',
+            'KFC',
+            'Laksa', 
+            'Prawn Noodles',
+            'Ayam Penyet', 
+            'Mee Soto', 
+            'Chick n Ken', 
+            'CCR',
+            'Order Pizza',
+            'QQ Rice',
+            'Daily Cut',
+            'Cedele',
+            'Mini Wok Noodles',
+            'Salad',
+            'Bak Kut Teh',
+            'Maggi Goreng',
+            'Tip Top',
+            'Turkish'
 	    	);
 
-    	$('.result').html(arr[Math.floor(Math.random() * ((arr.length - 1) - 0 + 1))]);
+        // randomly choose from array
+        var randomResponse = arr[Math.floor(Math.random() * ((arr.length - 1) - 0 + 1))];
+        $('.result').html(randomResponse);
 
-    	count++;
-    	console.log(count);
-    	
-    	if (count >= 10) {
-    		$('.alert').html('Make up your mind leh.' + '<br />You rolled <u>' + count + '</u> times already.')
-    	}
+        // count how many times generated   
+        count++;
+        
+        if (count >= 10) {
+            $('.alert').html('Make up your mind leh.' + '<br />You rolled <u>' + count + '</u> times already.')
+        }
+
+        // find out how many occurences has happened
+        randomResponse  = randomResponse.replace(/ /g,"_");
+        
+        var currentHidden = $("#" + randomResponse + "").val();
+        
+        currentHidden = parseInt(currentHidden);
+        currentHidden = currentHidden + 1;
+
+        $('#' + randomResponse + '').val(currentHidden);
+        console.log(randomResponse + currentHidden)
+
+        // display message if occurence is more than 3
+        if (currentHidden >= 3){
+            randomResponse  = randomResponse.replace(/_/g," ");
+            $('.alert').html("Eh. " + randomResponse + " has appeared 3 times already.<br />You will eat " + randomResponse + " today. Bye!");
+            $('.spin').attr('disabled','disabled');
+            // $('.spin').text('NO MORE ROLLING.');
+            $('.spin').addClass('disabled');
+        }
 		 
 	});
 	      
