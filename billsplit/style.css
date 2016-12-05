@@ -2,8 +2,13 @@
 	box-sizing:border-box;
 }
 
+select{
+	cursor: pointer;
+}
+
 .wrapper{
 	border:1px solid #ccc;
+	padding-bottom:3%;
 }
 
 header{
@@ -15,5 +20,13 @@ header{
 }
 
 .form-control{
-	cursor: pointer;
+	/*cursor: pointer;*/
+}
+
+.names{
+	margin-top:15px;
+}
+
+.names .form-control{
+	margin-bottom:15px;
 }

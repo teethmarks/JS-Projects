@@ -22,26 +22,44 @@
 			
 			<!-- pax -->
 			<div class="form-group">
-				<label for="sel1">How many pax?</label>
-				<select class="form-control" id="sel1">
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
+				<label for="pax">How many pax?</label>
+				<select class="form-control" id="pax">
+				<option value="1">1</option>
+				<option value="2" selected>2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				</select>
+			</div>
+			
+			<!-- plates -->
+			<div class="form-group">
+				<label for="plates">Sharing any plates?</label>
+				<select class="form-control" id="plates">
+				<option selected>No</option>
+				<option>Yes</option>
 				</select>
 			</div>
 
-			<div class="form-group">
-				<label for="sel1">Sharing any plates?</label>
-				<select class="form-control" id="sel1">
-				<option>Yes</option>
-				<option>No</option>
-				</select>
+			<button class="btn btn-primary btn-block btn-lg submit">Confirm</button>
+
+			<!-- names !-->
+			<div class="form-group names">
+				<h3>Names</h3>
+				<div class="namefields"></div>
 			</div>
 		
 		</div>
 
 	</div>
 	</div>
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="js/main.js"></script>
 </body>
 </html>
