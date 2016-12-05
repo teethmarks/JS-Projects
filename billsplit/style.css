@@ -1,0 +1,19 @@
+*{
+	box-sizing:border-box;
+}
+
+.wrapper{
+	border:1px solid #ccc;
+}
+
+header{
+	background-color:#333;
+	color:#fff;
+	padding:2%;
+	text-align: center;
+	font-size:2em;
+}
+
+.form-control{
+	cursor: pointer;
+}
