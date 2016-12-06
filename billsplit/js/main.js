@@ -1,5 +1,6 @@
 var pax;
 var plates;
+var i = 0;
 
 $('.submit').on('click', function(e){
 	e.preventDefault();
@@ -9,7 +10,7 @@ $('.submit').on('click', function(e){
 	pax = $('#pax').val();
 	plates = $('#plates').val();
 
-	for (var i = 0; i < pax; i++){
+	for (i = 0; i < pax; i++){
 		$('.namefields').append('<input type="text" class="form-control" value="' + String.fromCharCode(i + 65) + '"></div>');
 	}
 
