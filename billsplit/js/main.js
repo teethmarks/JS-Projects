@@ -13,6 +13,11 @@ $('.submit').on('click', function(e){
 		$('.namefields').append('<input type="text" class="form-control" value="' + String.fromCharCode(i + 65) + '"></div>');
 	}
 
-	$('.namefields').append('<button class="btn btn-success btn-block btn-lg submit">Next</button>');
+	// $('.namefields').append('');
 });
 
+$('.next').on('click', function(){
+	$('.start').hide();
+	$('.calculator').show();
+	$('header').text('Person A')
+});

@@ -30,3 +30,7 @@ header{
 .names .form-control{
 	margin-bottom:15px;
 }
+
+.calculator{
+	display:none;
+}
