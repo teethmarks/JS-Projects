@@ -1,0 +1,84 @@
+<html>
+
+<head>
+	<title>Hello!</title>
+	<style>
+	body{
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	}
+
+	#greeting{
+		font-size:2.5em;
+		color:#fff;
+		font-family:Arial,sans-serif;
+		font-weight:bold;
+		position:absolute;
+		top:50%;
+		left:50%;
+		transform: translateX(-50%) translateY(-50%);
+		text-align:center;
+		text-shadow:2px 2px 2px #000;
+		}
+	</style>
+
+	<script type="text/javascript">
+	
+	function refresher(){
+		var refresh = 1000; // Refresh rate in milli seconds
+		mytime = setTimeout('myClock()',refresh);
+	}
+
+	function myClock(){
+
+		var nowDate = new Date();
+		var nowHour = nowDate.getHours();
+
+		if(nowHour <= 5){
+			document.body.style.backgroundImage = "url('night.jpg')";
+			document.getElementById("greeting").innerHTML = "Good Night!<br />The time is now: " + nowDate;
+			tt=refresher();
+			
+		}
+
+		else if(nowHour <= 11){
+			document.body.style.backgroundImage = "url('morning.jpg')";
+			document.getElementById("greeting").innerHTML = "Good Morning!<br />The time is now: " + nowDate;
+			tt=refresher();
+		}
+
+		else if(nowHour <= 17){
+			document.body.style.backgroundImage = "url('afternoon.jpg')";
+			document.getElementById("greeting").innerHTML = "Good Afternoon!<br />The time is now: " + nowDate;
+			tt=refresher();
+		}
+
+		else if(nowHour <= 19){
+			document.body.style.backgroundImage = "url('evening.jpg')";
+			document.getElementById("greeting").innerHTML = "Good Evening!<br />The time is now: " + nowDate;
+			tt=refresher();
+		}
+
+		else if(nowHour <= 24){
+			document.body.style.backgroundImage = "url('night.jpg')";
+			document.getElementById("greeting").innerHTML = "Good Night!<br />The time is now: " + nowDate;
+			tt=refresher();
+		}
+	}
+		
+	</script>
+</head>
+
+<body onload=myClock();>
+	
+	<div id="wrapper">
+		<div id="greeting">
+		Javascript failed to load. Sorry!
+		</div>
+	</div>
+
+</body>
+
+</html>
