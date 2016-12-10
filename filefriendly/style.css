@@ -1,18 +1,35 @@
 .container {
     margin-top: 30vh;
+    padding-top:3vh;
+    padding-bottom:3vh;
+    border-radius: 10px;
+    font-family:'Arial',sans-serif;
+    
 }
 
 .btn {
-    width: 100%;
-    margin-top: 2vh;
+    width: 18%;
+    font-weight: bold;
+    font-size: 2.5vh;
+    background-image: url(images/copy.png);
+    background-repeat: no-repeat;
+    background-size: 3vh;
+    background-position: 4vh 2vh;
+    padding-left: 6vh;
+
 }
 
 .result {
     margin-top: 2vh;
+    display:flex;
+    justify-content:space-between;
 }
 
 .result-wrap {
     font-size: 15px;
-    background-color: #eee;
+    background-color: #333;
+    color:#fff;
     padding: 2vh;
+    width:80%;
+    border-radius: 5px;
 }
