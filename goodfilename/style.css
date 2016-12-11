@@ -1,10 +1,25 @@
+body{
+	background:url(images/bg.jpg) no-repeat center center fixed;
+    background-size:cover;
+}
+
+h1{
+    font-weight:bold;
+    margin-bottom:3%;
+}
+
 .container {
-    margin-top: 20vh;
+    margin-top: 25vh;
     padding-top:3vh;
     padding-bottom:3vh;
     border-radius: 10px;
-    font-family:'Arial',sans-serif;
-    
+}
+
+.col{
+	background-color: rgba(255, 255, 255,0.95);
+	border-radius: 5px;
+	padding-bottom:2%;
+    box-shadow: 1px 1px 10px #666;
 }
 
 .btn,.btn:focus {
@@ -39,10 +54,6 @@
     background-color: #333;
     padding: 2vh;
     border-radius: 5px;
-}
-
-h1{
-    font-weight:bold;
 }
 
 
