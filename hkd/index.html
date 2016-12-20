@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="container">
-		HK$ <input type="number" class="hkd" placeholder="Based on 5.5 rate">
+		HK$ <input type="number" class="hkd" placeholder="Based on 5.43 rate">
 		<div class="sgd"></div>
 	</div>
 	<script
@@ -26,7 +26,7 @@
   		
   		$('.hkd').on('keyup',function(){
   			var convert = $('.hkd').val();
-  			convert = convert / 5.5;
+  			convert = convert / 5.43;
   			convert = convert.toFixed(2);
   			$('.sgd').html('S$ ' + convert);
   		

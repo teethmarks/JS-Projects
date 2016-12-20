@@ -87,25 +87,26 @@
 			url: 'http://api.openweathermap.org/data/2.5/forecast/daily?q=hongkong&cnt=6&APPID=f1b51d2f1b5470ff8b150981fff67a1d',
 			success: function(response){
 
-				$('h1').find('span').html(response.city.name);
+			var maxTemp = Math.round(response.list[0].temp.max - 273.15) + '°C';
+			var minTemp = Math.round(response.list[0].temp.min - 273.15) + '°C';
 
-				$('.now').find('strong').html(moment.unix(response.list[0].dt).format("ddd, D MMM YYYY"));
-				$('.now').find('.result').html(Math.round(response.list[0].temp.max - 273.15) + ' °C<br />' + response.list[0].weather[0].description);
+			$('.now').find('strong').html(moment.unix(response.list[0].dt).format("ddd, D MMM YYYY"));
+			$('.now').find('.result').html(maxTemp + ' - ' + minTemp + '<br />' + response.list[0].weather[0].description);
 
-				$('.day2').find('strong').html(moment.unix(response.list[1].dt).format("ddd, D MMM YYYY"));
-				$('.day2').find('.result').html(Math.round(response.list[1].temp.max - 273.15) + ' °C<br />' + response.list[1].weather[0].description);
+			$('.day2').find('strong').html(moment.unix(response.list[1].dt).format("ddd, D MMM YYYY"));
+			$('.day2').find('.result').html(maxTemp + ' - ' + minTemp + '<br />' + response.list[1].weather[0].description);
 
-				$('.day3').find('strong').html(moment.unix(response.list[2].dt).format("ddd, D MMM YYYY"));
-				$('.day3').find('.result').html(Math.round(response.list[2].temp.max - 273.15) + ' °C<br />' + response.list[2].weather[0].description);
+			$('.day3').find('strong').html(moment.unix(response.list[2].dt).format("ddd, D MMM YYYY"));
+			$('.day3').find('.result').html(maxTemp + ' - ' + minTemp + '<br />' + response.list[2].weather[0].description);
 
-				$('.day4').find('strong').html(moment.unix(response.list[3].dt).format("ddd, D MMM YYYY"));
-				$('.day4').find('.result').html(Math.round(response.list[3].temp.max - 273.15) + ' °C<br />' + response.list[3].weather[0].description);
+			$('.day4').find('strong').html(moment.unix(response.list[3].dt).format("ddd, D MMM YYYY"));
+			$('.day4').find('.result').html(maxTemp + ' - ' + minTemp + '<br />' + response.list[3].weather[0].description);
 
-				$('.day5').find('strong').html(moment.unix(response.list[4].dt).format("ddd, D MMM YYYY"));
-				$('.day5').find('.result').html(Math.round(response.list[4].temp.max - 273.15) + ' °C<br />' + response.list[4].weather[0].description);
+			$('.day5').find('strong').html(moment.unix(response.list[4].dt).format("ddd, D MMM YYYY"));
+			$('.day5').find('.result').html(maxTemp + ' - ' + minTemp + '<br />' + response.list[4].weather[0].description);
 
-				$('.day6').find('strong').html(moment.unix(response.list[5].dt).format("ddd, D MMM YYYY"));
-				$('.day6').find('.result').html(Math.round(response.list[5].temp.max - 273.15) + ' °C<br />' + response.list[5].weather[0].description);
+			$('.day6').find('strong').html(moment.unix(response.list[5].dt).format("ddd, D MMM YYYY"));
+			$('.day6').find('.result').html(maxTemp + ' - ' + minTemp + '<br />' + response.list[5].weather[0].description);
 			},
 			error: function(){
 				$('.result').html('error.');
@@ -120,6 +121,9 @@
 			var value = $(this).val();
 			var selectURL = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=' + value + '&cnt=6&APPID=f1b51d2f1b5470ff8b150981fff67a1d'
 
+			// var maxTemp = Math.round(response.list[0].temp.max - 273.15) + '°C';
+			// var minTemp = Math.round(response.list[0].temp.min - 273.15) + '°C';
+
 			$.ajax({
 				type: 'GET',
 				url: selectURL,
@@ -128,22 +132,22 @@
 					$('h1').find('span').html(response.city.name);
 
 					$('.now').find('strong').html(moment.unix(response.list[0].dt).format("ddd, D MMM YYYY"));
-					$('.now').find('.result').html(Math.round(response.list[0].temp.max - 273.15) + ' °C<br />' + response.list[0].weather[0].description);
+					$('.now').find('.result').html(Math.round(response.list[0].temp.max - 273.15) + '°C - ' + Math.round(response.list[0].temp.min - 273.15) + '°C<br/>' + response.list[0].weather[0].description);
 
 					$('.day2').find('strong').html(moment.unix(response.list[1].dt).format("ddd, D MMM YYYY"));
-					$('.day2').find('.result').html(Math.round(response.list[1].temp.max - 273.15) + ' °C<br />' + response.list[1].weather[0].description);
+					$('.day2').find('.result').html(Math.round(response.list[1].temp.max - 273.15) + '°C - ' + Math.round(response.list[1].temp.min - 273.15) + '°C<br/>' + response.list[1].weather[0].description);
 
 					$('.day3').find('strong').html(moment.unix(response.list[2].dt).format("ddd, D MMM YYYY"));
-					$('.day3').find('.result').html(Math.round(response.list[2].temp.max - 273.15) + ' °C<br />' + response.list[2].weather[0].description);
+					$('.day3').find('.result').html(Math.round(response.list[2].temp.max - 273.15) + '°C - ' + Math.round(response.list[2].temp.min - 273.15) + '°C<br/>' + response.list[2].weather[0].description);
 
 					$('.day4').find('strong').html(moment.unix(response.list[3].dt).format("ddd, D MMM YYYY"));
-					$('.day4').find('.result').html(Math.round(response.list[3].temp.max - 273.15) + ' °C<br />' + response.list[3].weather[0].description);
+					$('.day4').find('.result').html(Math.round(response.list[3].temp.max - 273.15) + '°C - ' + Math.round(response.list[3].temp.min - 273.15) + '°C<br/>' + response.list[3].weather[0].description);
 
 					$('.day5').find('strong').html(moment.unix(response.list[4].dt).format("ddd, D MMM YYYY"));
-					$('.day5').find('.result').html(Math.round(response.list[4].temp.max - 273.15) + ' °C<br />' + response.list[4].weather[0].description);
+					$('.day5').find('.result').html(Math.round(response.list[4].temp.max - 273.15) + '°C - ' + Math.round(response.list[4].temp.min - 273.15) + '°C<br/>' + response.list[4].weather[0].description);
 
 					$('.day6').find('strong').html(moment.unix(response.list[5].dt).format("ddd, D MMM YYYY"));
-					$('.day6').find('.result').html(Math.round(response.list[5].temp.max - 273.15) + ' °C<br />' + response.list[5].weather[0].description);
+					$('.day6').find('.result').html(Math.round(response.list[5].temp.max - 273.15) + '°C - ' + Math.round(response.list[5].temp.min - 273.15) + '°C<br/>' + response.list[5].weather[0].description);
 				},
 				error: function(){
 					$('.result').html('error.');
