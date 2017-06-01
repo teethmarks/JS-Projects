@@ -1,0 +1,55 @@
+.container {
+    padding: 30px 5% 0 5%;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+button:focus {
+    outline: 0 !important;
+}
+
+#calculate {
+    display: block;
+    margin-top: 15px;
+}
+
+.result {
+    background: #eee;
+    padding: 10px;
+    margin-top: 15px;
+}
+
+.btn {
+    width: 100%;
+}
+
+.form-control {
+    margin-bottom: 20px;
+}
+
+/*// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap*/
+
+/*// Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+
+}
+
+/*// Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) {
+	.container {
+    padding: 30px 20% 0 20%;
+	}
+}
+
+/*// Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) {
+	
+}
+
+/*// Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+
+}
